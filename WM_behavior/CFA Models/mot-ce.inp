@@ -1,0 +1,28 @@
+
+DATA: FILE IS BM DATA 1028v2.dat;
+
+
+VARIABLE: NAMES ARE 
+                    SubID group pldbm1-pldbm4 solidbm1-solidbm4 circle1-circle4 rec1-rec4 
+mot1-mot4 letter1-letter4 cloc1-cloc4 color1-color4 locat1-locat4 shape1-shape4 
+ospan1-ospan3 symm1-symm3 anti nback1-nback2 bigfive1-bigfive6 raven LPS 
+EQ1-EQ5 IRI1-IRI5 Empathy;
+	  
+
+USEVARIABLE = pldbm4 solidbm4 circle4 rec4 color4 locat4 shape4 letter4 cloc4 anti nback1
+ospan2 symm2 mot4;
+
+ANALYSIS: ESTIMATOR = MLM;
+
+MODEL: 
+bm by pldbm4 solidbm4;
+nbm by circle4 rec4;
+obejct by shape4 color4 locat4 cloc4 letter4;
+ce by anti nback1 ospan2 symm2 mot4;
+
+event by bm nbm;
+nbm@0;
+
+
+OUTPUT: standardized;
+
